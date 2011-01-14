@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.mobilepearls.memory" android:versionCode="5" android:versionName="1.4" android:installLocation="auto">
+    <application android:icon="@drawable/icon" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+        <activity android:name=".MemoryMenuActivity" android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MemoryActivity"/>
+        <activity android:name=".ListHighScoresActivity"/>
+        <activity android:name=".AboutActivity"/>
+		<meta-data android:name="ADMOB_PUBLISHER_ID" android:value="a14bbca0b9d3df3"/>
+    </application>
+	<supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true"/>
+	<uses-sdk android:minSdkVersion="4" />
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<!-- needed for admob: -->
+	<uses-permission android:name="android.permission.INTERNET"/>
+</manifest> 
