@@ -1,6 +1,7 @@
 package com.mobilepearls.memory;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -66,9 +67,17 @@ public class MemoryActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.restart_menu) {
+		switch (item.getItemId()) {
+		case R.id.restart_menu:
 			game.restart();
 			view.invalidate();
+			return true;
+		case R.id.highscore_menuitem:
+			startActivity(new Intent(this, ListHighScoresActivity.class));
+			return true;
+		case R.id.about_menuitem:
+			startActivity(new Intent(this, AboutActivity.class));
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

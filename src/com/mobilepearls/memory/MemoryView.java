@@ -12,11 +12,11 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Bitmap.Config;
 import android.os.Vibrator;
 import android.text.InputFilter;
 import android.util.AttributeSet;
@@ -26,6 +26,15 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.EditText;
 
+/**
+ * Graphics fetched with something like:
+ * <pre>
+ * # Resize:
+ * i=1; for f in `ls`; do if [ $f = "favorites" ]; then cp $f ../converted64/unknown_64.png; else cp $f ../converted64/tile_${i}_64.png; (( i = i+1 )); fi; done;
+ * # Move exported images:
+ * ( cd ../converted64/ && rm -Rf /home/fornwall/Documents/workspace-android/net.fornwall.memory/res/drawable-port/* && cp * $HOME/src/workspace-android/com.mobilepearls.memory/res/drawable-port/ )
+ * </pre>
+ */
 public class MemoryView extends View implements OnTouchListener {
 
 	static class GameMetrics {
