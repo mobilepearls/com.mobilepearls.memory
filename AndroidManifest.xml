@@ -9,7 +9,6 @@
         </activity>
         <activity android:name=".ListHighScoresActivity"/>
         <activity android:name=".AboutActivity"/>
-		<meta-data android:name="ADMOB_PUBLISHER_ID" android:value="a14bbca0b9d3df3"/>
     </application>
 	<supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true"/>
 	<uses-sdk android:minSdkVersion="4" />
