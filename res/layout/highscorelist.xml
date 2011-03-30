@@ -15,22 +15,7 @@
               android:layout_height="fill_parent"
               android:layout_weight="1"
               android:gravity="center"
-              android:text="No high score!"
+              android:text="@string/no_high_score"
               android:textColor="#FFFFFF"/>
-
-<!--
-	<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:weightSum="2">
-		<Button android:id="@+id/highScoreShareButton" android:text="Share"
-					android:layout_weight="1"
-			android:layout_width="fill_parent" android:layout_height="wrap_content" />
-  -->
-		<Button	android:id="@+id/closeButton"
-			android:layout_weight="1"
- 			android:text="@string/back_button"
- 			android:layout_width="fill_parent"
- 			android:layout_height="wrap_content"/>
- 			<!--
-	</LinearLayout>
-  -->
 
 </LinearLayout>

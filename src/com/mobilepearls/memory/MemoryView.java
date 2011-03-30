@@ -17,7 +17,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.os.Vibrator;
 import android.text.InputFilter;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
@@ -106,7 +105,6 @@ public class MemoryView extends View implements OnTouchListener {
 	}
 
 	void gameOver() {
-		vibrate();
 		final int usedSeconds = (int) (game.getUsedTimeMs() / 1000);
 
 		final String LAST_NAME_KEY = "last_name";
@@ -247,11 +245,6 @@ public class MemoryView extends View implements OnTouchListener {
 				});
 			}
 		}, delay);
-	}
-
-	public void vibrate() {
-		Vibrator vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-		vibrator.vibrate(300);
 	}
 
 }

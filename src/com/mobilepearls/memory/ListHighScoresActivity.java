@@ -11,9 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -35,29 +33,6 @@ public class ListHighScoresActivity extends ListActivity {
 
 		setContentView(com.mobilepearls.memory.R.layout.highscorelist);
 		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, list));
-
-		Button closeButton = (Button) findViewById(com.mobilepearls.memory.R.id.closeButton);
-		closeButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
-
-		// Intent intent = getIntent();
-		// Bundle extras = intent.getExtras();
-		// if (extras != null && extras.getBoolean(JUST_STORED)) {
-		// AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		// alert.setMessage("Do you want to share your high score?");
-		// alert.setCancelable(true);
-		// alert.setNegativeButton("No", null);
-		// alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-		// public void onClick(DialogInterface dialog, int whichButton) {
-		// share();
-		// }
-		// });
-		// alert.show();
-		// }
 	}
 
 	@Override

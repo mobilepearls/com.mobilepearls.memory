@@ -9,13 +9,7 @@
               android:layout_height="fill_parent"
               android:autoLink="web"
               android:textSize="18dip"
-              android:text="Memory $VERSION$\n\nby Mobile Pearls\nhttp://mobilepearls.com\n\nIcons from\nhttp://www.everaldo.com/crystal"
+              android:text="@string/about_text"
               android:textColor="#FFFFFF"/>
-
-    <Button	android:id="@+id/closeButton"
- 			android:text="@string/back_button"
- 			android:layout_width="fill_parent"
- 			android:layout_height="wrap_content"
- 			android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

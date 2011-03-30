@@ -68,7 +68,7 @@ public class MemoryActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.restart_menu:
+		case R.id.restart_menuitem:
 			game.restart();
 			view.invalidate();
 			return true;

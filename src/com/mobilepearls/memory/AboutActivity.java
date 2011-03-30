@@ -5,9 +5,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.TextView;
 
 public class AboutActivity extends Activity {
@@ -25,14 +22,6 @@ public class AboutActivity extends Activity {
 		} catch (NameNotFoundException e) {
 			Log.e(getClass().getSimpleName(), e.getMessage(), e);
 		}
-
-		Button closeButton = (Button) findViewById(R.id.closeButton);
-		closeButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				finish();
-			}
-		});
 	}
 
 }
