@@ -1,1 +1,2 @@
-A simple memory game for Android.
+A simple memory game for Android available at
+https://market.android.com/details?id=com.mobilepearls.memory.
