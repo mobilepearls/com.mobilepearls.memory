@@ -19,7 +19,6 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.text.InputFilter;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
@@ -203,8 +202,6 @@ public class MemoryView extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		Log.v("mobilepearls", "Touch event: " + event + ", getX=" + event.getX() + ", getY=" + event.getY());
-
 		int actionMasked = event.getAction() & MotionEvent.ACTION_MASK;
 		if (actionMasked != MotionEvent.ACTION_DOWN && actionMasked != MotionEvent.ACTION_POINTER_DOWN)
 			return false;
