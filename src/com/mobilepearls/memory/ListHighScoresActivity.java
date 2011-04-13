@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class ListHighScoresActivity extends ListActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
 		HighScoreDatabase db = HighScoreDatabase.getDatabase(this);
 		final List<String> list = new ArrayList<String>();
@@ -63,7 +65,8 @@ public class ListHighScoresActivity extends ListActivity {
 			Toast.makeText(this, "No high score to share yet!", Toast.LENGTH_SHORT).show();
 			return;
 		}
-		StringBuilder buffer = new StringBuilder("My high score in Memory (http://mobilepearls.com):\n\n");
+		StringBuilder buffer = new StringBuilder(
+		"My high score in Memory (https://market.android.com/details?id=com.mobilepearls.memory):\n\n");
 		for (HighScoreEntry entry : list) {
 			buffer.append(entry.score).append(" s - ").append(entry.name).append('\n');
 		}

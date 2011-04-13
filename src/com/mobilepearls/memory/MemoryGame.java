@@ -177,4 +177,8 @@ public class MemoryGame implements Serializable {
 		startTime = System.currentTimeMillis();
 		listener.gameStarted(this);
 	}
+
+	public boolean wasLastClickIncorrect() {
+		return objectToClearAfterTimeout == CLEAR_NOTHING;
+	}
 }

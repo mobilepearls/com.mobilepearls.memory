@@ -19,14 +19,15 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.text.InputFilter;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.HapticFeedbackConstants;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
 import android.widget.EditText;
 
 /**
  * Graphics fetched with something like:
+ * 
  * <pre>
  * # Resize:
  * i=1; for f in `ls`; do if [ $f = "favorites" ]; then cp $f ../converted64/unknown_64.png; else cp $f ../converted64/tile_${i}_64.png; (( i = i+1 )); fi; done;
@@ -34,7 +35,7 @@ import android.widget.EditText;
  * ( cd ../converted64/ && rm -Rf /home/fornwall/Documents/workspace-android/net.fornwall.memory/res/drawable-port/* && cp * $HOME/src/workspace-android/com.mobilepearls.memory/res/drawable-port/ )
  * </pre>
  */
-public class MemoryView extends View implements OnTouchListener {
+public class MemoryView extends View {
 
 	static class GameMetrics {
 		int boardHeight;
@@ -57,7 +58,7 @@ public class MemoryView extends View implements OnTouchListener {
 	public MemoryView(Context context, AttributeSet attributes) {
 		super(context, attributes);
 		this.game = ((MemoryActivity) context).game;
-		setOnTouchListener(this);
+		// setOnTouchListener(this);
 	}
 
 	private GameMetrics computeMetrics() {
@@ -105,6 +106,7 @@ public class MemoryView extends View implements OnTouchListener {
 	}
 
 	void gameOver() {
+		SoundManager.playGameDone();
 		final int usedSeconds = (int) (game.getUsedTimeMs() / 1000);
 
 		final String LAST_NAME_KEY = "last_name";
@@ -129,8 +131,8 @@ public class MemoryView extends View implements OnTouchListener {
 				}
 			});
 		} else {
-			alert.setMessage("Time: " + usedSeconds + " seconds.\nHigh score position: " + position
-					+ "\n\nPlease enter name:");
+			alert.setMessage("Congratulations!\n\nHigh score position: " + position + "\nTime: " + usedSeconds
+					+ " seconds\n\nEnter your name:");
 			final EditText textInput = new EditText(getContext());
 			textInput.setText(initialName);
 			textInput.setFilters(new InputFilter[] { new InputFilter.LengthFilter(30) });
@@ -146,7 +148,6 @@ public class MemoryView extends View implements OnTouchListener {
 					db.addEntry(value, usedSeconds);
 					Intent intent = new Intent();
 					intent.setClass(getContext(), ListHighScoresActivity.class);
-					((Activity) getContext()).finish();
 					intent.putExtra(ListHighScoresActivity.JUST_STORED, true);
 					getContext().startActivity(intent);
 				}
@@ -201,12 +202,17 @@ public class MemoryView extends View implements OnTouchListener {
 	}
 
 	@Override
-	public boolean onTouch(View v, MotionEvent event) {
+	public boolean onTouchEvent(MotionEvent event) {
+		Log.v("mobilepearls", "Touch event: " + event + ", getX=" + event.getX() + ", getY=" + event.getY());
+
+		int actionMasked = event.getAction() & MotionEvent.ACTION_MASK;
+		if (actionMasked != MotionEvent.ACTION_DOWN && actionMasked != MotionEvent.ACTION_POINTER_DOWN)
+			return false;
 		if (game.isWaitingForTimeout())
 			return false;
 
-		int x = ((int) event.getX()) - metrics.offsetX + metrics.paddingBetweenTiles;
-		int y = ((int) event.getY()) - metrics.offsetY + metrics.paddingBetweenTiles;
+		int x = ((int) event.getX(event.getActionIndex())) - metrics.offsetX + metrics.paddingBetweenTiles;
+		int y = ((int) event.getY(event.getActionIndex())) - metrics.offsetY + metrics.paddingBetweenTiles;
 		if (x < 0 || y < 0)
 			return false;
 		int xTile = x / (metrics.tileSize + metrics.paddingBetweenTiles);
@@ -222,14 +228,19 @@ public class MemoryView extends View implements OnTouchListener {
 			performHapticFeedback(HapticFeedbackConstants.FLAG_IGNORE_VIEW_SETTING/* =1=VIRTUAL_KEY */);
 			if (game.isWaitingForTimeout()) {
 				startTimeoutCountdown();
+				if (game.wasLastClickIncorrect()) {
+					SoundManager.playIncorrect();
+				} else {
+					SoundManager.playCorrect();
+				}
 			}
 		}
 		invalidate();
-		return false;
+		return true;
 	}
 
 	public void startTimeoutCountdown() {
-		long delay = 2000;
+		final long delay = 1000;
 
 		timer.schedule(new TimerTask() {
 			@Override

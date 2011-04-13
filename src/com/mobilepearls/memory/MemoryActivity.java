@@ -2,6 +2,7 @@ package com.mobilepearls.memory;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,8 @@ public class MemoryActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		SoundManager.initSounds(this);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		if (savedInstanceState != null) {
 			game = (MemoryGame) savedInstanceState.getSerializable(GAME_KEY);

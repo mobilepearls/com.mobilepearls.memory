@@ -7,8 +7,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ListHighScoresActivity"/>
-        <activity android:name=".AboutActivity"/>
+        <activity android:name=".ListHighScoresActivity" android:theme="@android:style/Theme.Dialog"/>
+        <activity android:name=".AboutActivity" android:theme="@android:style/Theme.Dialog"/>
     </application>
 	<supports-screens android:anyDensity="true" android:smallScreens="true" android:normalScreens="true" android:largeScreens="true"/>
 	<uses-sdk android:minSdkVersion="4" />
