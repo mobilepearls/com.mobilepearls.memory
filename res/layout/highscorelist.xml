@@ -6,16 +6,14 @@
 	<ListView android:id="@+id/android:list"
 			  android:layout_width="fill_parent" 
     		  android:layout_height="fill_parent"
-    		  android:textSize="18dip"
-    		  android:layout_weight="1"/>
+    		  android:textSize="18sp"/>
 
 	<TextView android:id="@+id/android:empty"
               android:layout_width="fill_parent" 
               android:layout_height="fill_parent"
-              android:layout_weight="1"
               android:gravity="center"
               android:text="@string/no_high_score"
-              android:textSize="18dip"
+              android:textSize="18sp"
               android:textColor="#FFFFFF"/>
 
 </RelativeLayout>

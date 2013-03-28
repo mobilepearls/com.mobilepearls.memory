@@ -230,6 +230,8 @@ public class MemoryView extends View {
 				} else {
 					SoundManager.playCorrect();
 				}
+			} else {
+				SoundManager.playClick();
 			}
 		}
 		invalidate();
@@ -237,7 +239,7 @@ public class MemoryView extends View {
 	}
 
 	public void startTimeoutCountdown() {
-		final long delay = 1000;
+		final long delay = 400;
 
 		timer.schedule(new TimerTask() {
 			@Override

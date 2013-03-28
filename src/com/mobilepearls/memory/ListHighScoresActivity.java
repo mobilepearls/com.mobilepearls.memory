@@ -3,7 +3,6 @@ package com.mobilepearls.memory;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.R;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,14 +32,14 @@ public class ListHighScoresActivity extends ListActivity {
 			list.add(entry.score + " s - " + entry.name);
 		}
 
-		setContentView(com.mobilepearls.memory.R.layout.highscorelist);
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.simple_list_item_1, list));
+		setContentView(R.layout.highscorelist);
+		setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(com.mobilepearls.memory.R.menu.highscore_menu, menu);
+		inflater.inflate(R.menu.highscore_menu, menu);
 		return true;
 	}
 
@@ -66,7 +65,7 @@ public class ListHighScoresActivity extends ListActivity {
 			return;
 		}
 		StringBuilder buffer = new StringBuilder(
-		"My high score in Memory (https://market.android.com/details?id=com.mobilepearls.memory):\n\n");
+				"My high score in Memory (https://market.android.com/details?id=com.mobilepearls.memory):\n\n");
 		for (HighScoreEntry entry : list) {
 			buffer.append(entry.score).append(" s - ").append(entry.name).append('\n');
 		}
